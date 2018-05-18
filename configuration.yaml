@@ -1,0 +1,150 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 49.980048
+  longitude: 8.436674
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 90
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Berlin
+  customize: !include customize.yaml
+
+
+config:
+
+map:
+
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_certloc
+  ssl_key: !secret ssl_keyloc
+  base_url: !secret base_urlloc
+  
+
+#customizer:
+#  custom_ui: local
+  
+#emulated_hue:
+#  listen_port: 8300
+#  expose_by_default: true
+#  exposed_domains:
+#    - switch
+#    - light
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+
+logger:
+  default: error
+  logs:
+    aiohttp.server: critical
+
+ios:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+  
+mqtt:
+  broker: 192.168.2.21
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+
+homematic:
+  interfaces:
+    rf:
+      host: 127.0.0.1
+
+#apple_tv:
+#  - host: 192.168.2.78
+#    login_id: 00000000-419b-e2ad-2a37-fa83cee7405a
+#    name: Apple TV
+#    credentials: 92CB2C940456522D:67C8CE62BB52D2F9AAFE46EC05F8C27166750687CF75DFCC7A62ED4CF013AC2E
+
+    
+#ffmpeg:
+#  ffmpeg_bin: /usr/bin/avconv
+
+#camera:
+#  - platform: ffmpeg
+#    input: rtsp://192.168.2.37/unicast
+#    name: CAM Mini
+
+#
+media_player:
+  - platform: volumio
+    host: 192.168.2.24
+    port: 3000
+#  - platform: samsungtv
+#    host: 192.168.2.20
+#    scan_interval: 40
+#  - platform: snapcast
+#    host: 192.168.2.21
+
+#
+#mysensors:
+#  gateways:
+#    - device: '/dev/ttyUSB0'
+#      persistence_file: '/home/homeassistant/.homeassistant/mysensors2.json'
+#      baud_rate: 115200
+#  optimistic: false
+#  persistence: true
+#  retain: true
+#  version: 2.0
+# 
+    
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:floor-plan
+    url_path: floorplan
+    config: !include floorplan.yaml
+    
+#hdmi_cec:
+#  host: 192.168.2.27
+#  platform: media_player
+#  devices:
+#    TV: 0.0.0.0
+#    RPi: 1.0.0.0
+    
+
+coinbase:
+  api_key: !secret coinbase_key 
+  api_secret: !secret coinbase_secret 
+  exchange_rate_currencies:
+    - BTC
+    - ETH
+    - LTC
+    - EUR
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.2.72
+    token: 6c6c517a446f69574b304357576a4f76
+  
+automation: !include automations.yaml
+switch: !include switchs.yaml
+light: !include lights.yaml
+sensor: !include sensors.yaml
+group: !include groups.yaml
+frontend: !include frontend.yaml
+input_number: !include input_number.yaml
+script: !include scripts.yaml

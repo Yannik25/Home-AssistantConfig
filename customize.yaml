@@ -1,0 +1,37 @@
+homematic.rf:
+  hidden: true
+climate.meq0575120:
+  friendly_name: Wohnzimmer
+climate.meq1555026:
+  friendly_name: Küche
+climate.neq1519127:
+  friendly_name: Bad
+binary_sensor.neq1483914_state:
+  device_class: opening
+  friendly_name: Küchenfenster
+binary_sensor.oeq0708156_state:
+  friendly_name: Balkontür
+binary_sensor.oeq0708558_state:
+  friendly_name: Haustür
+sensor.yr_temperature:
+  friendly_name: Temp
+sensor.yr_humidity:
+  friendly_name: Feuchtigkeit
+binary_sensor.wzschalter_10_1:
+  hidden: true
+binary_sensor.wzschalter_10_2:
+  hidden: true
+binary_sensor.wzschalter_10_3:
+  hidden: true
+binary_sensor.wzschalter_10_4:
+  hidden: true
+binary_sensor.wzschalter_10_5:
+  hidden: true
+binary_sensor.wzschalter_10_6:
+  hidden: true
+sensor.bahnhof_russelsheim_to_frankfurtmflughafen:
+  friendly_name: RÜ-FRA
+sun.sun:
+  friendly_name: Sonne
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: Staubsaugroboter

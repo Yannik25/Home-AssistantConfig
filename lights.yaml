@@ -1,0 +1,86 @@
+- platform: hyperion
+  host: 192.168.2.27
+  brightness: true
+        
+- platform: mqtt
+  name: "Wand Spots"
+  state_topic: "/WZ-Spot/Relay/state"
+  command_topic: "/WZ-Spot/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true
+  
+- platform: mqtt
+  name: "Arbeitslampe"
+  state_topic: "/Arbeitslampe/Relay/state"
+  command_topic: "/Arbeitslampe/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true
+  
+- platform: mqtt
+  name: "Wandlampe"
+  state_topic: "/Wandlampe/Relay/state"
+  command_topic: "/Wandlampe/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true
+  
+- platform: mqtt
+  name: "Balkonlampe"
+  state_topic: "/BalkonESP/Relay/state"
+  command_topic: "/BalkonESP/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true
+  
+
+- platform: mqtt
+  name: "Deckenlampe1_1"
+  state_topic: "stat/deckenlampe/POWER1"
+  command_topic: "cmnd/deckenlampe/Backlog/power1"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+- platform: mqtt
+  name: "Deckenlampe1_2"
+  state_topic: "stat/deckenlampe/POWER2"
+  command_topic: "cmnd/deckenlampe/Backlog/power2"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+
+
+  
+- platform: mqtt_json
+  name: "Decken_LEDs"
+  state_topic: "yannik/DeckenLED"
+  command_topic: "yannik/DeckenLED/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+

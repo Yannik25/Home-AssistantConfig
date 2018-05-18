@@ -1,0 +1,183 @@
+- id: WZ_Master_ON
+  alias: WZ Master ON
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wzschalter_10_1
+    to: 'on'
+  action:
+    service: light.turn_on
+    entity_id:
+    - group.wohnzimmer_light
+- id: WZ_Master_OFF
+  alias: WZ Master OFF
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wzschalter_10_6
+    to: 'on'
+  action:
+    service: light.turn_off
+    entity_id:
+    - group.wohnzimmer_light
+- id: Arbeitleuchte
+  alias: Arbeitleuchte
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wzschalter_10_2
+    to: 'on'
+  action:
+    service: light.toggle
+    entity_id:
+    - light.arbeitslampe
+- id: Couch_on
+  alias: Couch on
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wzschalter_10_4
+    to: 'on'
+  action:
+    service: light.turn_on
+    entity_id:
+    - light.wand_spots
+    - light.wohnzimmer_led
+    - light.Decken_LEDs
+- id: Couch_off
+  alias: Couch off
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wzschalter_10_4
+    to: 'on'
+  action:
+    service: light.turn_off
+    entity_id:
+    - light.arbeitslampe
+    - light.Deckenlampe1_1
+    - light.Deckenlampe1_2
+- id: Theme_on
+  alias: Set dark theme for the night
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - event: sunset
+    platform: sun
+  action:
+  - data:
+      name: PmxMononight
+    service: frontend.set_theme
+- id: Theme_off
+  alias: Set bright theme for the day
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - event: sunrise
+    platform: sun
+  action:
+  - data:
+      name: default
+    service: frontend.set_theme
+- id: Evening_Movie
+  alias: Evening-Movie
+  hide_entity: true
+  condition:
+  - after: sunset
+    condition: sun
+  trigger:
+  - entity_id: media_player.kodi
+    from: paused
+    platform: state
+    to: playing
+  action:
+    service: light.turn_on
+    entity_id:
+    - light.wohnzimmer_led
+    data:
+      brightness: 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+- id: Sleep-Mode
+  alias: Sleep-Mode
+  condition:
+  - after: sunset
+    condition: sun
+  - condition: state
+    entity_id: light.Decken_LEDs
+    state: 'on'
+  trigger:
+  - entity_id: binary_sensor.wzschalter_10_4
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      brightness: 20
+    entity_id:
+    - light.Decken_LEDs
+    - light.wohnzimmer_led
+    service: light.turn_on
+- id: TV-AUS
+  alias: TV-AUS
+  trigger:
+  - entity_id: switch.hdmi_0
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - service: hdmi_cec.standby
+- id: Animation_speed
+  alias: Decken Animation Speed
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - platform: state
+    entity_id: input_number.decken_led_animation
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: yannik/DeckenLED/set
+      payload: '{"transition":{{ trigger.to_state.state | int }}}'
+- id: Balkonlicht_an
+  alias: Balkonlicht_an
+  condition:
+  - below: '100'
+    condition: numeric_state
+    entity_id: sensor.Helligkeit
+  trigger:
+  - entity_id: binary_sensor.oeq0708156_state
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - entity_id:
+    - light.Balkonlampe
+    service: light.turn_on
+- id: Balkonlicht_an2
+  alias: Balkonlicht_an2
+  condition:
+  - condition: state
+    entity_id: binary_sensor.oeq0708156_state
+    state: 'on'
+  trigger:
+  - below: '100'
+    entity_id: sensor.helligkeit
+    platform: numeric_state
+  action:
+  - entity_id:
+    - light.Balkonlampe
+    service: light.turn_on
+- id: Balkonlicht_aus
+  alias: Balkonlicht_aus
+  trigger:
+  - entity_id: binary_sensor.oeq0708156_state
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id:
+    - light.Balkonlampe

@@ -1,0 +1,100 @@
+default_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+      - sun.sun
+      - sensor.yr_temperature
+      - sensor.yr_humidity
+      - sensor.bahnhof_russelsheim_to_frankfurtmflughafen
+      - sensor.berlin
+      - sensor.yanniks_iphone_battery_level
+      - sensor.yanniks_iphone_battery_state
+      - sensor.dark_sky_icon
+      - sensor.coinbase_eur_wallet
+      - sensor.coinbase_btc_wallet
+      - sensor.coinbase_eth_wallet
+      - sensor.coinbase_ltc_wallet
+      - binary_sensor.neq1483914_state
+      - binary_sensor.oeq0708156_state
+      - binary_sensor.oeq0708558_state
+      - group.wohnzimmer_light
+      - media_player.apple_tv
+      - media_player.snapcast_client_b827eb220e01
+      - switch.hdmi_0
+      - media_player.hdmi_0
+      - vacuum.xiaomi_vacuum_cleaner
+      - input_select.hyperion_effect
+      - camera.cam_mini
+      - climate.meq0575120
+      - climate.neq1519127
+      - climate.meq1555026
+      
+      
+wohnzimmer_light:
+    name: Wohnzimmer
+    view: no
+    control: 
+    entities:
+      - light.arbeitslampe
+      #- light.wand_spots
+      - light.wohnzimmer_led
+      - light.wandlampe
+      - light.Deckenlampe1_1
+      - light.Deckenlampe1_2
+      - light.Decken_LEDs
+      - light.Wohnzimmer_RGB
+
+      
+      
+wohnzimmer2:
+    name: Wohnzimmer
+    view: yes
+    control: 
+    entities:
+      - climate.meq0575120
+      - vacuum.xiaomi_vacuum_cleaner
+      - light.arbeitslampe
+      #- light.wand_spots
+      - light.wohnzimmer_led
+      - light.wandlampe
+      - light.Deckenlampe1_1
+      - light.Deckenlampe1_2
+      - light.Decken_LEDs
+      - light.Wohnzimmer_RGB
+      
+
+Balkon:
+    name: Balkon
+    view: yes
+    control:
+    entities:
+      - light.Balkonlampe
+      - sensor.Helligkeit
+      
+      
+bad:
+    name: Bad
+    view: yes
+    control:
+    entities:
+      - climate.neq1519127
+      - light.Bad_RGB
+      - light.Bad_KW
+
+kueche:
+    name: Küche
+    view: yes
+    control:
+    entities:
+      - climate.meq1555026
+      - camera.cam_mini
+      
+heizung:
+    name: Heizung
+    view: yes
+    control:
+    entities:
+      - climate.meq0575120
+      - climate.neq1519127
+      - climate.meq1555026
+      

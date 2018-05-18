@@ -1,0 +1,8 @@
+sensor.yanniks_iphone_battery_state:
+  name:
+  platform: ios
+  unique_id: state_yanniks_iphone
+sensor.yanniks_iphone_battery_level:
+  name:
+  platform: ios
+  unique_id: level_yanniks_iphone
