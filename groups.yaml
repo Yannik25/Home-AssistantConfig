@@ -88,6 +88,15 @@ kueche:
     entities:
       - climate.meq1555026
       - camera.cam_mini
+      - light.kuche_licht
+      - light.kuche_leds
+      
+flur:
+    name: Flur
+    view: yes
+    control:
+    entities:
+      - light.flur
       
 heizung:
     name: Heizung
