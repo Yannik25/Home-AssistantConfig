@@ -73,11 +73,11 @@ homematic:
     rf:
       host: 127.0.0.1
 
-apple_tv:
-  - host: 192.168.2.78
-    login_id: !secret appletv_login_id 
-    name: Apple TV
-    credentials: !secret apple_credentials
+#apple_tv:
+#  - host: 192.168.2.78
+#    login_id: !secret appletv_login_id 
+#    name: Apple TV
+#    credentials: !secret apple_credentials
 
     
 #ffmpeg:
