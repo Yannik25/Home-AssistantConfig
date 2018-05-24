@@ -137,7 +137,7 @@ coinbase:
     
 octoprint:
   host: 192.168.2.41
-  api_key: 7C7C4B2364BA4FA6A525EF373362B3EF
+  api_key: AD249EF3D511423D820BC1249E098EA2
   bed: true
   number_of_tools: 1
 
