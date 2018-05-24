@@ -73,11 +73,11 @@ homematic:
     rf:
       host: 127.0.0.1
 
-#apple_tv:
-#  - host: 192.168.2.78
-#    login_id: 00000000-419b-e2ad-2a37-fa83cee7405a
-#    name: Apple TV
-#    credentials: 92CB2C940456522D:67C8CE62BB52D2F9AAFE46EC05F8C27166750687CF75DFCC7A62ED4CF013AC2E
+apple_tv:
+  - host: 192.168.2.78
+    login_id: !secret appletv_login_id 
+    name: Apple TV
+    credentials: !secret apple_credentials
 
     
 #ffmpeg:
@@ -134,12 +134,23 @@ coinbase:
     - ETH
     - LTC
     - EUR
+    
+octoprint:
+  host: 192.168.2.41
+  api_key: !secret octoapi_key
+  bed: true
+  number_of_tools: 1
 
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.2.72
-    token: 6c6c517a446f69574b304357576a4f76
+    token: !secret xiaomi_token
   
+binary_sensor:
+  - platform: workday
+    country: DE
+    
+    
 automation: !include automations.yaml
 switch: !include switchs.yaml
 light: !include lights.yaml
