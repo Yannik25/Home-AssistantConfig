@@ -2,9 +2,11 @@ default_view:
     view: yes
     icon: mdi:home 
     entities:
+      - media_player.volumio
+      - camera.3d_drucker_test
+      - camera.3d_drucker
+      - weather.yweather
       - sun.sun
-      - sensor.yr_temperature
-      - sensor.yr_humidity
       - sensor.bahnhof_russelsheim_to_frankfurtmflughafen
       - sensor.berlin
       - sensor.yanniks_iphone_battery_level
@@ -12,19 +14,23 @@ default_view:
       - sensor.dark_sky_icon
       - sensor.coinbase_eur_wallet
       - sensor.coinbase_btc_wallet
-      - sensor.coinbase_eth_wallet
-      - sensor.coinbase_ltc_wallet
+      #- sensor.coinbase_eth_wallet
+      #- sensor.coinbase_ltc_wallet
       - binary_sensor.neq1483914_state
       - binary_sensor.oeq0708156_state
       - binary_sensor.oeq0708558_state
       - group.wohnzimmer_light
+      - group.bad2
+      - group.octoprint
+      - media_player.samsung_tv_remote
       - media_player.apple_tv
       - media_player.snapcast_client_b827eb220e01
       - switch.hdmi_0
       - media_player.hdmi_0
       - vacuum.xiaomi_vacuum_cleaner
-      - input_select.hyperion_effect
       - camera.cam_mini
+      - switch.teufel
+      - input_boolean.dummy_tiles
       - climate.meq0575120
       - climate.neq1519127
       - climate.meq1555026
@@ -37,7 +43,8 @@ wohnzimmer_light:
     entities:
       - light.arbeitslampe
       #- light.wand_spots
-      - light.wohnzimmer_led
+      - light.ambilight
+      - light.wohnzimmerled
       - light.wandlampe
       - light.Deckenlampe1_1
       - light.Deckenlampe1_2
@@ -53,6 +60,7 @@ wohnzimmer2:
     entities:
       - climate.meq0575120
       - vacuum.xiaomi_vacuum_cleaner
+      - light.ambilight
       - light.arbeitslampe
       #- light.wand_spots
       - light.wohnzimmer_led
@@ -78,32 +86,60 @@ bad:
     control:
     entities:
       - climate.neq1519127
-      - light.Bad_RGB
-      - light.Bad_KW
+      - light.bad_licht
+      - light.bad_leds
+
+bad2:
+    name: Bad
+    view: no
+    control:
+    entities:
+      - light.bad_licht
+      - light.bad_leds
+      
 
 kueche:
     name: Küche
     view: yes
     control:
     entities:
-      - climate.meq1555026
-      - camera.cam_mini
       - light.kuche_licht
       - light.kuche_leds
+      - climate.meq1555026
+      - camera.cam_mini
+      - camera.dafang
       
-flur:
+Flur:
     name: Flur
     view: yes
     control:
     entities:
       - light.flur
       
-heizung:
-    name: Heizung
+Klima:
+    name: Klima
     view: yes
+    control:
+    entities:
+      - weather.yweather
+      - group.Heizung
+      
+Heizung:
+    name: Heizung
+    view: no
     control:
     entities:
       - climate.meq0575120
       - climate.neq1519127
       - climate.meq1555026
+
       
+octoprint:
+    name: 3D Drucker
+    entities:
+      - switch.3d_drucker
+      - sensor.octoprint_job_percentage
+      - sensor.octoprint_current_state
+      - sensor.Netzteiltemperatur
+      - sensor.octoprint_actual_tool0_temp
+      - sensor.octoprint_actual_bed_temp
