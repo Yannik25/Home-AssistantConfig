@@ -1,6 +1,11 @@
 - platform: hyperion
   host: 192.168.2.27
-  brightness: true
+  port: 19444
+  name: Ambilight
+  priority: 128
+  hdmi_priority: 880
+  default_color: [0,0,255]
+  effect_list: ['HDMI', 'Cinema brighten lights', 'Cinema dim lights', 'Knight rider', 'Blue mood blobs', 'Red mood blobs', 'Warm mood blobs', 'Rainbow swirl fast', 'Rainbow swirl', 'Random', 'Running dots', 'System Shutdown', 'Snake']
         
 - platform: mqtt
   name: "Wand Spots"
@@ -67,35 +72,91 @@
   payload_off: "OFF"
   retain: true
   
+- platform: mqtt
+  name: "Deckenlampe1_2"
+  state_topic: "stat/deckenlampe/POWER2"
+  command_topic: "cmnd/deckenlampe/Backlog/power2"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+- platform: mqtt
+  name: "Flur"
+  state_topic: "stat/flur/POWER2"
+  command_topic: "cmnd/flur/Backlog/power2"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+- platform: mqtt
+  name: 'Wohnzimmer-LED'
+  state_topic: 'Wohnzimmer-LED/relay/0'
+  command_topic: 'Wohnzimmer-LED/relay/0/set'
+  payload_on: 1
+  payload_off: 0
+  rgb_state_topic: 'Wohnzimmer-LED/color'
+  rgb_command_topic: 'Wohnzimmer-LED/color/set'
+  rgb: true
+  optimistic: false
+  brightness: true
+  brightness_scale: 255
+  brightness_command_topic:  'Wohnzimmer-LED/brightness/set'
+  brightness_state_topic: 'Wohnzimmer-LED/brightness'
+  
+  
+- platform: mqtt
+  name: "Bad Licht"
+  state_topic: "stat/bad/POWER1"
+  command_topic: "cmnd/bad/Backlog/power1"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+  
+- platform: mqtt
+  name: 'Bad LEDs'
+  state_topic: 'Bad-LED/relay/0'
+  command_topic: 'Bad-LED/relay/0/set'
+  payload_on: 1
+  payload_off: 0
+  rgb_state_topic: 'Bad-LED/color'
+  rgb_command_topic: 'Bad-LED/color/set'
+  rgb: true
+  optimistic: false
+  brightness: true
+  brightness_scale: 255
+  brightness_command_topic:  'Bad-LED/brightness/set'
+  brightness_state_topic: 'Bad-LED/brightness'
+  white_value: true
+  white_value_command_topic: 'Bad-LED/channel/3/set'
+  white_value_state_topic: 'Bad-LED/channel/3'
 
   
 - platform: mqtt_json
-  name: "Decken_LEDs"
-  state_topic: "yannik/DeckenLED"
-  command_topic: "yannik/DeckenLED/set"
+  name: "Decken LEDs"
+  state_topic: "home/DeckenLED_ha/state/out"
+  command_topic: "home/DeckenLED_ha/state/in"
+  on_command_type: 'first'
   effect: true
   effect_list:
-    - bpm
-    - candy cane  
-    - confetti  
-    - cyclon rainbow  
-    - dots  
-    - fire  
-    - glitter  
-    - juggle  
-    - lightning
-    - noise  
-    - police all  
-    - police one  
-    - rainbow  
-    - rainbow with glitter  
-    - ripple  
-    - sinelon  
-    - solid  
-    - twinkle  
+  ######
+    - "Static"
+    - "Blink"
+    - "Breath"
+    - "Color Wipe"
+    - "Color Wipe Inverse"
+    - "Color Wipe Reverse"
+    - "Color Wipe Reverse Inverse"
+    - "Color Wipe Random"
+    - "Random Color"
+    - "Single Dynamic"
+    - "Multi Dynamic"
+    - "Rainbow"
+    - "Rainbow Cycle"
+    - "Blink Rainbow"
   brightness: true
-  flash: true
+  color_temp: true
   rgb: true
   optimistic: false
   qos: 0
-
+  retain: true
